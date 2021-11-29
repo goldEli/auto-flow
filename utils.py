@@ -1,5 +1,6 @@
-from time import time
+import time
 import pyautogui
+import pyperclip
 
 
 def mouseClick(img):
@@ -13,7 +14,14 @@ def mouseClick(img):
 
 
 def inputText(text):
-    pyautogui.write(text, interval=0.25)
+    pyautogui.write(text, interval=0.1)
+
+
+def inputChinese(text):
+    pyperclip.copy(text)
+    time.sleep(0.5)
+    pyautogui.hotkey('command', 'v')
+
 
 def keyPress(key):
-		pyautogui.press(key)
+    pyautogui.press(key)
