@@ -1,3 +1,4 @@
+from time import time
 import pyautogui
 
 #
@@ -5,15 +6,29 @@ import pyautogui
 
 # pyautogui.alert('This is an alert box.')
 
+
+def mouseClick(img):
+    while True:
+        location = pyautogui.locateCenterOnScreen(img, confidence=0.9)
+        if location is not None:
+            pyautogui.click(location.x, location.y,
+                            button="left", interval=0.2)
+            break
+        time.sleep(0.1)
+
+
+def inputText(text):
+    pyautogui.write(text, interval=0.25)
+
+def keyPress(key):
+		pyautogui.press(key)
+
+
 if __name__ == '__main__':
-    # key = input('select：1.once 2.Infinite loop\n')
-		screenWidth, screenHeight = pyautogui.size()
-		print("screen size", screenWidth, screenHeight)
-		location = pyautogui.locateCenterOnScreen(
-		    "./imgs/chrome_icon.jpg", confidence=0.9)
-		if location is not None:
-			pyautogui.click(location.x,location.y,button="left")
-
-    # print(key)
-
-# print(screenWidth, screenHeight)
+    screenWidth, screenHeight = pyautogui.size()
+    print("screen size", screenWidth, screenHeight)
+    mouseClick("./imgs/wechat_icon.jpg")
+    mouseClick("./imgs/user_icon.jpg")
+    inputText("hello")
+    keyPress('enter')
+    
